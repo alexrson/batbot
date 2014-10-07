@@ -1,6 +1,8 @@
 import time
 import praw
 from optparse import OptionParser
+from secrets import username
+from secrets import password
 
 
 def monitor():
@@ -12,8 +14,8 @@ def monitor():
 
 def scan(already_replied=set([]), stimulus='swear to god', response='SWEAR TO ME'):
     r = praw.Reddit(user_agent='batbot_agent')
-    username = 'PUTUSERNAMEHERE'
-    password = 'PUTPASSOWORDHERE'
+    #username = 'PUTUSERNAMEHERE'
+    #password = 'PUTPASSOWORDHERE'
     r.login(username, password)
     for submission in r.get_front_page():
         print submission
