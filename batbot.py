@@ -1,6 +1,7 @@
-import sys
 import time
 import praw
+from optparse import OptionParser
+
 
 def monitor():
     already_replied = set()
@@ -50,7 +51,16 @@ def extract_all_general(comments):
 
 
 if __name__ == '__main__':
-    if '--scan' in sys.argv:
-        scan()
-    elif '--monitor':
-        monitor()
+    parser = OptionParser()
+    parser.add_option('--scan', dest='scan', action='store_true', default=False)
+    parser.add_option('--monitor', dest='monitor', action='store_true', default=False)
+    parser.add_option('--stimulus', dest='stimulus', default='swear to god', help='Text to look for (case insensitive)')
+    parser.add_option('--response', dest='response', default='SWEAR TO ME', help='Text to reply with')
+    (options, args) = parser.parse_args()
+    if options.scan:
+        scan(stimulus=options.stimulus, response=options.response)
+    elif options.monitor:
+        monitor(stimulus=options.stimulus, response=options.response)
+    else:
+        print 'Choose --scan to look through the front page once now'
+        print 'Choose --monitor to continually scan the fron page indefinitely'
