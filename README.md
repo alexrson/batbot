@@ -12,3 +12,10 @@ To run fill in a valid username and password in `secrets.py`.
 ```
 python batbot.py --monitor
 ```
+
+Custom stimuli and response can be specified with `--stimulus` and `--response`.
+
+For example:
+```
+python batbot.py --monitor --stimulus "source: I am a" --response "But it's not who you are underneath, it's what you do that defines you."
+```
